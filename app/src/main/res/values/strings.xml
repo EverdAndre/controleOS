@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Controle de OS Valecel</string>
+    <string name="e_mail">Digite seu e-mail</string>
+    <string name="invalid_e_mail">Digite um e-mail válido!</string>
+    <string name="senha">Digite sua Senha</string>
+    <string name="login_error">Usuario ou Senha invalidos!</string>
+    <string name="btnLogin">Login</string>
+    <string name="logotipo">Logotipo do App</string>
+    <string name="bem_vindo">Bem-vindo!</string>
+    <string name="sair">Sair</string>
+    <string name="titulo">Controle de Serviços</string>
+    <string name="id_da_os">Numero da OS</string>
+    <string name="data">Data</string>
+    <string name="situa_o_do_pagamento">Situação do Pagamento</string>
+    <string name="pago">Pago</string>
+    <string name="a_pagar">A Pagar</string>
+    <string name="tipo_de_pagamento">Tipo de Pagamento</string>
+    <string name="executado">Serviço Executado</string>
+    <string name="informado">Informado</string>
+    <string name="constatado">Problema Constatado</string>
+    <string name="senhas">Senhas</string>
+    <string name="editar">Editar</string>
+    <string name="salvar">Salvar</string>
+    <string name="listar">Listar</string>
+    <string name="novo">Novo</string>
+    <string name="excluir">Excluir</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="sucesso_conta">Conta criada com sucesso!</string>
+    <string name="erro_conta">Erro ao criar conta</string>
+    <string name="campo_vazio">Preencha os campos e-mail e senha!</string>
+    <string name="os_data_vazio">Número da OS e Data são obrigatórios!</string>
+    <string name="db_success">Dados salvos com sucesso!</string>
+    <string name="db_error">Erro ao salvar dados!</string>
+    <string name="lembrar_me">Login Automático</string>
+    <string name="titulolistagem">Ordens de Serviço</string>
+    <string name="text_view">Lista de ordens de serviço</string>
+    <string name="excluir_succes">OS excluida com Sucesso</string>
+    <string name="erro_ao_excluir">Erro ao excluir: %1$s</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="excluir_confirm">Tem certeza que deseja excluir esta ordem de serviço?</string>
+    <string name="update_sucesso">Ordem atualizada com sucesso!</string>
+    <string name="update_error">Erro ao atualizar: %1$s</string>
+    <string name="erro_lista">Erro ao carregar lista</string>
+
+
+    <!-- Opções do Spinner -->
+    <string-array name="tipo_pagamento">
+        <item>A pagar</item>
+        <item>Dinheiro</item>
+        <item>Pix</item>
+    </string-array>
+</resources>
+
+
