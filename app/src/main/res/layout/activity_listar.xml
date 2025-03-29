@@ -55,6 +55,7 @@
         android:layout_width="387dp"
         android:layout_height="34dp"
         android:orientation="horizontal"
+        android:layout_margin="20dp"
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/listarOs"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/data"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingStart="15dp"/>
 
         <TextView
             android:id="@+id/txtNumeroOSlistar"
@@ -77,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/id_da_os"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingStart="5dp"/>
 
         <TextView
             android:id="@+id/txtInformadolistar"
@@ -85,7 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/informado"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingStart="15dp"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

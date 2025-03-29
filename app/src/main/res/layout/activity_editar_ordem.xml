@@ -99,18 +99,19 @@
 
             <TextView
                 android:id="@+id/tvSituacaoPagamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="87dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="29dp"
+                android:paddingTop="15dp"
                 android:text="@string/situa_o_do_pagamento"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/TipoPagamento"
                 app:layout_constraintEnd_toStartOf="@+id/radioGroupOpcPag"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.212"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilNumeroOS"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.258" />
 
             <RadioGroup
                 android:id="@+id/radioGroupOpcPag"

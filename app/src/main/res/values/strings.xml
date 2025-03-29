@@ -11,7 +11,7 @@
     <string name="titulo">Controle de Serviços</string>
     <string name="id_da_os">Numero da OS</string>
     <string name="data">Data</string>
-    <string name="situa_o_do_pagamento">Situação do Pagamento</string>
+    <string name="situa_o_do_pagamento">Pagamento</string>
     <string name="pago">Pago</string>
     <string name="a_pagar">A Pagar</string>
     <string name="tipo_de_pagamento">Tipo de Pagamento</string>
