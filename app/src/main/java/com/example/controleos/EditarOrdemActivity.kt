@@ -37,6 +37,7 @@ class EditarOrdemActivity : AppCompatActivity() {
         val etInformado = findViewById<EditText>(R.id.informado)
         val etConstatado = findViewById<EditText>(R.id.constatado)
         val etExecutado = findViewById<EditText>(R.id.executado)
+        val etValor = findViewById<EditText>(R.id.valor)
         val etSenhas = findViewById<EditText>(R.id.senhas)
         val btnSalvar = findViewById<android.widget.Button>(R.id.btnSalvar)
         val btnExcluir = findViewById<android.widget.Button>(R.id.btnExcluir)
@@ -48,6 +49,7 @@ class EditarOrdemActivity : AppCompatActivity() {
         val informado = intent.getStringExtra("informado")
         val constatado = intent.getStringExtra("constatado")
         val executado = intent.getStringExtra("executado")
+        val valor = intent.getStringExtra("valor")
         val senhas = intent.getStringExtra("senhas")
 
         // Preenche os campos
@@ -63,6 +65,7 @@ class EditarOrdemActivity : AppCompatActivity() {
         etInformado.setText(informado)
         etConstatado.setText(constatado)
         etExecutado.setText(executado)
+        etValor.setText(valor)
         etSenhas.setText(senhas)
 
         // Número da OS não pode ser alterado
@@ -102,6 +105,7 @@ class EditarOrdemActivity : AppCompatActivity() {
                 "informado" to etInformado.text.toString(),
                 "constatado" to etConstatado.text.toString(),
                 "executado" to etExecutado.text.toString(),
+                "valor" to etValor.text.toString(),
                 "senhas" to etSenhas.text.toString()
             )
 

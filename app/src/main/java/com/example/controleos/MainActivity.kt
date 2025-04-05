@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                         editor.apply()
 
                         // Ir para a tela principal
-                        val intent = Intent(this, TelaPrincipal::class.java)
+                        val intent = Intent(this, ListarActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {

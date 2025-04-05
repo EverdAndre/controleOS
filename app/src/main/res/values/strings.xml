@@ -41,6 +41,8 @@
     <string name="update_sucesso">Ordem atualizada com sucesso!</string>
     <string name="update_error">Erro ao atualizar: %1$s</string>
     <string name="erro_lista">Erro ao carregar lista</string>
+    <string name="valor">Valor do Serviço</string>
+    <string name="nova">Nova OS</string>
 
 
     <!-- Opções do Spinner -->

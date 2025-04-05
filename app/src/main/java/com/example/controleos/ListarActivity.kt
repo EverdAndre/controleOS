@@ -71,6 +71,7 @@ class ListarActivity : AppCompatActivity() {
                         informado = document.getString("informado") ?: "",
                         constatado = document.getString("constatado") ?: "",
                         executado = document.getString("executado") ?: "",
+                        valor = document.getString("valor") ?: "",
                         senhas = document.getString("senhas") ?: ""
                     )
                     listaOrdens.add(ordem)
@@ -99,7 +100,9 @@ class ListarActivity : AppCompatActivity() {
                         informado = document.getString("informado") ?: "",
                         constatado = document.getString("constatado") ?: "",
                         executado = document.getString("executado") ?: "",
+                        valor = document.getString("valor") ?: "",
                         senhas = document.getString("senhas") ?: ""
+
                     )
                     listaOrdens.add(ordem)
                 }
@@ -149,6 +152,7 @@ class ListarActivity : AppCompatActivity() {
                     putExtra("informado", ordem.informado)
                     putExtra("constatado", ordem.constatado)
                     putExtra("executado", ordem.executado)
+                    putExtra("valor", ordem.valor)
                     putExtra("senhas", ordem.senhas)
                 }
                 editarOrdemLauncher.launch(intent)

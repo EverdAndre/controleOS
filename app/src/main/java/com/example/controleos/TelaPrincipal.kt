@@ -34,6 +34,7 @@ class TelaPrincipal : AppCompatActivity() {
         val etInformado = findViewById<EditText>(R.id.informado)
         val etConstatado = findViewById<EditText>(R.id.constatado)
         val etExecutado = findViewById<EditText>(R.id.executado)
+        val etValor = findViewById<EditText>(R.id.valor)
         val etSenhas = findViewById<EditText>(R.id.senhas)
         val btnSalvar = findViewById<Button>(R.id.btnSalvar)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
@@ -72,6 +73,7 @@ class TelaPrincipal : AppCompatActivity() {
             val informado = etInformado.text.toString().trim()
             val constatado = etConstatado.text.toString().trim()
             val executado = etExecutado.text.toString().trim()
+            val valor = etValor.text.toString().trim()
             val senhas = etSenhas.text.toString().trim()
             //  Validação dos campos obrigatórios
             if (numeroOS.isEmpty() || data.isEmpty()) {
@@ -91,6 +93,7 @@ class TelaPrincipal : AppCompatActivity() {
                 "informado" to informado,
                 "constatado" to constatado,
                 "executado" to executado,
+                "valor" to valor,
                 "senhas" to senhas
             )
 
@@ -108,6 +111,7 @@ class TelaPrincipal : AppCompatActivity() {
                     etInformado.setText("")
                     etConstatado.setText("")
                     etExecutado.setText("")
+                    etValor.setText("")
                     etSenhas.setText("")
                 }
                 .addOnFailureListener { e ->

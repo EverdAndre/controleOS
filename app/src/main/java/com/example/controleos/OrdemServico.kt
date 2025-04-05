@@ -8,5 +8,6 @@ data class OrdemServico(
     val informado: String = "",
     val constatado: String = "",
     val executado: String = "",
-    val senhas: String = ""
+    val senhas: String = "",
+    val valor: String
 )
