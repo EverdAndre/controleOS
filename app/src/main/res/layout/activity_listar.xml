@@ -16,11 +16,24 @@
         android:text="@string/bem_vindo"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnLogout"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"/>
 
     <!-- Botão de Logout -->
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/sair"
+        app:layout_constraintBottom_toTopOf="@+id/titulolistagem"
+        app:layout_constraintEnd_toStartOf="@+id/Welcome"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <Button
         android:id="@+id/btnLogoutListar"
@@ -36,6 +49,7 @@
         app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toEndOf="@+id/Welcome"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <!-- Título Principal -->
     <TextView
@@ -105,5 +119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

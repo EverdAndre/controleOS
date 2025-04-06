@@ -38,10 +38,17 @@ class ListarActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        val btnLogout = findViewById<Button>(R.id.btnLogoutListar)
+        val btnNova = findViewById<Button>(R.id.btnLogoutListar)
+        btnNova.setOnClickListener {
+            val intent = Intent(this, TelaPrincipal::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, TelaPrincipal::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }

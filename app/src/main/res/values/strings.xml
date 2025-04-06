@@ -43,6 +43,15 @@
     <string name="erro_lista">Erro ao carregar lista</string>
     <string name="valor">Valor do Serviço</string>
     <string name="nova">Nova OS</string>
+    <string name="nome">Digite seu Nome</string>
+    <string name="cadastro">Cadastro de Usuário</string>
+    <string name="telefone">Digite seu Telefone</string>
+    <string name="senhaconf">Confirme sua Senha</string>
+    <string name="senha_conf"><![CDATA[Atenção !! <br> Senhas não São Identicas]]></string>
+    <string name="restrito">Acesso Restrito</string>
+    <string name="senha_restrita">Digite a senha interna para criar uma nova conta:</string>
+    <string name="senha_admin">Valecel2014*</string>
+    <string name="error_uid">Erro: UID não encontrado.</string>
 
 
     <!-- Opções do Spinner -->

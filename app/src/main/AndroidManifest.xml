@@ -13,20 +13,23 @@
         android:theme="@style/Theme.MaterialComponents.DayNight"
         tools:targetApi="31">
         <activity
-            android:name=".EditarOrdemActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".CriarContaActivity"
             android:exported="false" />
+        <activity
+            android:name=".EditarOrdemActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ListarActivity"
             android:exported="false" />
         <activity
             android:name=".TelaPrincipal"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,6 +11,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import android.content.SharedPreferences
 import android.widget.CheckBox
+import androidx.appcompat.app.AlertDialog
+import android.text.InputType
+
+
 // tela 1
 private lateinit var sharedPreferences: SharedPreferences
 
@@ -42,26 +46,36 @@ class MainActivity : AppCompatActivity() {
             checkLembrar.isChecked = true
         }
 
+        btnCriarConta.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.restrito))
+            builder.setMessage(getString(R.string.senha_restrita))
 
-        btnCriarConta.setOnClickListener{
-            val email = editEmail.text.toString()
-            val senha = editSenha.text.toString()
+            val input = EditText(this)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            builder.setView(input)
 
-            if (email.isEmpty() || senha.isEmpty()){
-                Toast.makeText(this,getString(R.string.campo_vazio),Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            // conectar uma conta no Firebase
-            auth.createUserWithEmailAndPassword(email, senha)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this,getString(R.string.sucesso_conta), Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, getString(R.string.erro_conta) + ": " + task.exception?.message, Toast.LENGTH_SHORT).show()
+            builder.setPositiveButton("Confirmar") { dialog, _ ->
+                val senhaDigitada = input.text.toString()
+                val senhaCorreta = getString(R.string.senha_admin)
 
-                    }
+                if (senhaDigitada == senhaCorreta) {
+                    val intent = Intent(this, CriarContaActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this,getString(R.string.login_error), Toast.LENGTH_SHORT).show()
                 }
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.cancel()
+            }
+
+            builder.show()
         }
+
 
         btnLogin.setOnClickListener {
             val email = editEmail.text.toString().trim() // Captura o email atualizado
