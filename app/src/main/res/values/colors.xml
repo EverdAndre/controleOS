@@ -5,4 +5,13 @@
     <color name="cor_fundo">#BCC3EA</color>
     <color name="blue">#050539F6</color>
     <color name="gray">#054F4F50</color>
+    <color name="status_orcamento">#A91EF4</color>
+    <color name="status_agaprov">#FF9800</color>
+    <color name="status_aprovado">#B7F5DD</color>
+    <color name="status_reprovado">#F44336</color>
+    <color name="status_pecas">#38F557</color>
+    <color name="status_bancada">#2196F3</color>
+    <color name="status_concluido">#FF000000</color>
+    <color name="status_padrao">#CCCCCC</color>
+
 </resources>

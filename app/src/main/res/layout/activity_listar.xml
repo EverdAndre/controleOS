@@ -68,6 +68,7 @@
         android:id="@+id/cabecalhoTabela"
         android:layout_width="387dp"
         android:layout_height="34dp"
+        android:weightSum="4"
         android:orientation="horizontal"
         android:layout_margin="20dp"
         android:padding="8dp"
@@ -84,8 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/data"
-            android:textStyle="bold"
-            android:paddingStart="15dp"/>
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/txtNumeroOSlistar"
@@ -100,10 +100,20 @@
             android:id="@+id/txtInformadolistar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:text="@string/informado"
             android:textStyle="bold"
-            android:paddingStart="15dp"/>
+            android:paddingStart="5dp"/>
+
+        <TextView
+            android:id="@+id/txtStatusOs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/status"
+            android:textStyle="bold"
+            android:paddingStart="5dp"/>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

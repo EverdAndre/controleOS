@@ -28,20 +28,29 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="@string/id_da_os"
             android:textStyle="bold"
-            android:paddingStart="5dp"/>
+            android:paddingStart="10dp"/>
 
         <TextView
             android:id="@+id/txtInformado"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:text="@string/informado"
             android:textStyle="bold"
             android:paddingStart="5dp"/>
+
+        <View
+            android:id="@+id/statusIndicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/circle_indicador"
+            android:layout_gravity="center_vertical"/>
+
 
     </LinearLayout>
 

@@ -73,6 +73,7 @@ class ListarActivity : AppCompatActivity() {
                     val ordem = OrdemServico(
                         numeroOS = document.getString("numeroOS") ?: "",
                         data = document.getString("data") ?: "",
+                        statusOs = document.getString("statusOs") ?: "",
                         statusPagamento = document.getString("statusPagamento") ?: "",
                         tipoPagamento = document.getString("tipoPagamento") ?: "",
                         informado = document.getString("informado") ?: "",
@@ -102,13 +103,14 @@ class ListarActivity : AppCompatActivity() {
                     val ordem = OrdemServico(
                         numeroOS = document.getString("numeroOS") ?: "",
                         data = document.getString("data") ?: "",
+                        statusOs = document.getString("statusOs") ?: "",
                         statusPagamento = document.getString("statusPagamento") ?: "",
                         tipoPagamento = document.getString("tipoPagamento") ?: "",
                         informado = document.getString("informado") ?: "",
                         constatado = document.getString("constatado") ?: "",
                         executado = document.getString("executado") ?: "",
+                        senhas = document.getString("senhas") ?: "",
                         valor = document.getString("valor") ?: "",
-                        senhas = document.getString("senhas") ?: ""
 
                     )
                     listaOrdens.add(ordem)
@@ -149,11 +151,28 @@ class ListarActivity : AppCompatActivity() {
             holder.txtNumeroOS.text = ordem.numeroOS
             holder.txtInformado.text = ordem.informado
 
+            val context = holder.itemView.context
+            val indicator = holder.itemView.findViewById<View>(R.id.statusIndicator)
+
+            val cor = when (ordem.statusOs) {
+                "Orçamento" -> R.color.status_orcamento
+                "Ag.Aprov" -> R.color.status_agaprov
+                "Aprovado" -> R.color.status_aprovado
+                "Reprovado" -> R.color.status_reprovado
+                "Ag.Peças" -> R.color.status_pecas
+                "Bancada" -> R.color.status_bancada
+                "OS Concluida" -> R.color.status_concluido
+                else -> R.color.status_padrao
+            }
+
+            indicator.background.setTint(context.getColor(cor))
+
             holder.itemView.setOnClickListener {
                 val context = holder.itemView.context
                 val intent = Intent(context, EditarOrdemActivity::class.java).apply {
                     putExtra("numeroOS", ordem.numeroOS)
                     putExtra("data", ordem.data)
+                    putExtra("statusOs", ordem.statusOs)
                     putExtra("statusPagamento", ordem.statusPagamento)
                     putExtra("tipoPagamento", ordem.tipoPagamento)
                     putExtra("informado", ordem.informado)

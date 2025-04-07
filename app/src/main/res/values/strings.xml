@@ -9,7 +9,7 @@
     <string name="bem_vindo">Bem-vindo!</string>
     <string name="sair">Sair</string>
     <string name="titulo">Controle de Serviços</string>
-    <string name="id_da_os">Numero da OS</string>
+    <string name="id_da_os">Nº OS</string>
     <string name="data">Data</string>
     <string name="situa_o_do_pagamento">Pagamento</string>
     <string name="pago">Pago</string>
@@ -52,6 +52,15 @@
     <string name="senha_restrita">Digite a senha interna para criar uma nova conta:</string>
     <string name="senha_admin">Valecel2014*</string>
     <string name="error_uid">Erro: UID não encontrado.</string>
+    <string name="status">Status OS</string>
+    <string name="orcamento">Orçamento</string>
+    <string name="agaprov">Ag.Aprov</string>
+    <string name="aprovada">Aprovado</string>
+    <string name="reprovada">Reprovado</string>
+    <string name="pecas">Ag.Peças</string>
+    <string name="bancada">Bancada</string>
+    <string name="pronto">Pronto</string>
+    <string name="concluido">OS Concluida</string>
 
 
     <!-- Opções do Spinner -->

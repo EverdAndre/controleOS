@@ -1,4 +1,5 @@
 package com.example.controleos
+
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,13 +16,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
-import android.widget.Toast
 
-//tela 5
 class EditarOrdemActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,14 @@ class EditarOrdemActivity : AppCompatActivity() {
 
         val etNumeroOS = findViewById<EditText>(R.id.etNumeroOS)
         val etData = findViewById<EditText>(R.id.etData)
+        val checkOrcamento = findViewById<RadioButton>(R.id.checkOrcamento)
+        val checkAprovacao = findViewById<RadioButton>(R.id.checkAgAprov)
+        val checkAprovado = findViewById<RadioButton>(R.id.checkAprov)
+        val checkReprovado = findViewById<RadioButton>(R.id.checkReprov)
+        val checkPecas = findViewById<RadioButton>(R.id.checkAgPecas)
+        val checkBancada = findViewById<RadioButton>(R.id.checkBancada)
+        val checkPronto = findViewById<RadioButton>(R.id.checkPronto)
+        val checkConcluido = findViewById<RadioButton>(R.id.checkConcluido)
         val checkPago = findViewById<RadioButton>(R.id.checkPago)
         val checkAPagar = findViewById<RadioButton>(R.id.checkAPagar)
         val spinnerTipoPagamento = findViewById<Spinner>(R.id.TipoPagamento)
@@ -42,7 +49,31 @@ class EditarOrdemActivity : AppCompatActivity() {
         val btnSalvar = findViewById<android.widget.Button>(R.id.btnSalvar)
         val btnExcluir = findViewById<android.widget.Button>(R.id.btnExcluir)
         val btnLogout = findViewById<android.widget.Button>(R.id.btnLogout)
+        val radioGroupStatus1 = findViewById<RadioGroup>(R.id.radioGroupStatus)
+        val radioGroupStatus2 = findViewById<RadioGroup>(R.id.radioGroupStatus2)
+        val radioGroupStatus3 = findViewById<RadioGroup>(R.id.radioGroupStatus3)
+
+        // Flag de bloqueio para evitar loop recursivo
+        var bloqueando = false
+
+        // Função que limpa os outros dois grupos sem causar loop
+        fun limparOutros(grupoSelecionado: RadioGroup) {
+            if (bloqueando) return
+            bloqueando = true
+            if (grupoSelecionado != radioGroupStatus1) radioGroupStatus1.clearCheck()
+            if (grupoSelecionado != radioGroupStatus2) radioGroupStatus2.clearCheck()
+            if (grupoSelecionado != radioGroupStatus3) radioGroupStatus3.clearCheck()
+            bloqueando = false
+        }
+
+// Configura os listeners com proteção contra loop
+        radioGroupStatus1.setOnCheckedChangeListener { _, _ -> limparOutros(radioGroupStatus1) }
+        radioGroupStatus2.setOnCheckedChangeListener { _, _ -> limparOutros(radioGroupStatus2) }
+        radioGroupStatus3.setOnCheckedChangeListener { _, _ -> limparOutros(radioGroupStatus3) }
+
+
         val statusPagamento = intent.getStringExtra("statusPagamento")
+        val statusOs = intent.getStringExtra("statusOs")
         val numeroOS = intent.getStringExtra("numeroOS")
         val data = intent.getStringExtra("data")
         val tipoPagamento = intent.getStringExtra("tipoPagamento")
@@ -52,7 +83,6 @@ class EditarOrdemActivity : AppCompatActivity() {
         val valor = intent.getStringExtra("valor")
         val senhas = intent.getStringExtra("senhas")
 
-        // Preenche os campos
         etNumeroOS.setText(numeroOS)
         etData.setText(data)
 
@@ -61,6 +91,16 @@ class EditarOrdemActivity : AppCompatActivity() {
             "A Pagar" -> checkAPagar.isChecked = true
         }
 
+        when (statusOs) {
+            "Ag.Aprov" -> checkAprovacao.isChecked = true
+            "Aprovado" -> checkAprovado.isChecked = true
+            "Reprovado" -> checkReprovado.isChecked = true
+            "Ag.Peças" -> checkPecas.isChecked = true
+            "Bancada" -> checkBancada.isChecked = true
+            "Pronto" -> checkPronto.isChecked = true
+            "OS Concluida" -> checkConcluido.isChecked = true
+            else -> checkOrcamento.isChecked = true
+        }
 
         etInformado.setText(informado)
         etConstatado.setText(constatado)
@@ -68,10 +108,8 @@ class EditarOrdemActivity : AppCompatActivity() {
         etValor.setText(valor)
         etSenhas.setText(senhas)
 
-        // Número da OS não pode ser alterado
         etNumeroOS.isEnabled = false
 
-        // Spinner
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.tipo_pagamento,
@@ -80,7 +118,6 @@ class EditarOrdemActivity : AppCompatActivity() {
         spinnerTipoPagamento.adapter = adapter
         spinnerTipoPagamento.setSelection(adapter.getPosition(tipoPagamento))
 
-        // Calendário
         etData.setOnClickListener {
             val calendario = Calendar.getInstance()
             val ano = calendario.get(Calendar.YEAR)
@@ -88,18 +125,29 @@ class EditarOrdemActivity : AppCompatActivity() {
             val dia = calendario.get(Calendar.DAY_OF_MONTH)
 
             val datePicker = DatePickerDialog(this, { _, y, m, d ->
-                val dataFormatada =
-                    String.format(Locale.getDefault(), "%02d/%02d/%04d", d, m + 1, y)
+                val dataFormatada = String.format(Locale.getDefault(), "%02d/%02d/%04d", d, m + 1, y)
                 etData.setText(dataFormatada)
             }, ano, mes, dia)
             datePicker.show()
         }
 
-        // SALVAR ALTERAÇÕES
         btnSalvar.setOnClickListener {
+            val statusOsSelecionado = when {
+                checkOrcamento.isChecked -> "Orçamento"
+                checkAprovacao.isChecked -> "Ag.Aprov"
+                checkAprovado.isChecked -> "Aprovado"
+                checkReprovado.isChecked -> "Reprovado"
+                checkPecas.isChecked -> "Ag.Peças"
+                checkBancada.isChecked -> "Bancada"
+                checkPronto.isChecked -> "Pronto"
+                checkConcluido.isChecked -> "OS Concluida"
+                else -> "Orçamento"
+            }
+
             val novaOS = hashMapOf(
                 "numeroOS" to (numeroOS ?: ""),
                 "data" to etData.text.toString(),
+                "statusOs" to statusOsSelecionado,
                 "statusPagamento" to if (checkPago.isChecked) "Pago" else "A Pagar",
                 "tipoPagamento" to spinnerTipoPagamento.selectedItem.toString(),
                 "informado" to etInformado.text.toString(),
@@ -117,44 +165,33 @@ class EditarOrdemActivity : AppCompatActivity() {
                     finish()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this,
-                        getString(R.string.update_error, e.message), Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, getString(R.string.update_error, e.message), Toast.LENGTH_SHORT).show()
                 }
         }
 
-        // EXCLUIR
         btnExcluir.setOnClickListener {
             val alertDialog = androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle("Confirmar exclusão")
                 .setMessage(getString(R.string.excluir_confirm))
                 .setPositiveButton("Sim") { dialog, _ ->
-            db.collection("ordens_servico").document(numeroOS ?: "")
-                .delete()
-                .addOnSuccessListener {
-                    Toast.makeText(this, getString(R.string.excluir_succes), Toast.LENGTH_SHORT).show()
-
-                    setResult(RESULT_OK) // indica que houve uma exclusão
-                    finish()
-
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this,
-                        getString(R.string.erro_ao_excluir, e.message), Toast.LENGTH_SHORT).show()
-                }
+                    db.collection("ordens_servico").document(numeroOS ?: "")
+                        .delete()
+                        .addOnSuccessListener {
+                            Toast.makeText(this, getString(R.string.excluir_succes), Toast.LENGTH_SHORT).show()
+                            setResult(RESULT_OK)
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, getString(R.string.erro_ao_excluir, e.message), Toast.LENGTH_SHORT).show()
+                        }
                     dialog.dismiss()
                 }
-                .setNegativeButton(getString(R.string.cancelar)) { dialog, _ ->
-
-                    dialog.dismiss()
-                }
+                .setNegativeButton(getString(R.string.cancelar)) { dialog, _ -> dialog.dismiss() }
                 .create()
 
             alertDialog.show()
-
         }
 
-        // LOGOUT
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, ListarActivity::class.java)
@@ -162,7 +199,6 @@ class EditarOrdemActivity : AppCompatActivity() {
             finish()
         }
 
-        // Ajuste de barras
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
